@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Button } from './ui/ui/button';
 import UserButton from './UserButton';
+import { Link } from 'react-router-dom'
 export default function Header() {
     const { user } = useContext(AuthContext);
   return (
@@ -17,7 +18,10 @@ export default function Header() {
         {user?
         <div className='flex items-center gap-5'>
             <UserButton />
-            <Button>Submit Listing</Button>
+            <Link to={'/profile'}>
+                <Button>Submit Listing</Button>
+            </Link>
+            
         </div> 
         :
         <Button>Submit Listing</Button>

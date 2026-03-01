@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
+import Profile from "./profile";
+import AddListing from "./add-listing";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+     path: "/profile",
+     element: <Profile />,
+  },
+  {
+     path: "/add-listing",
+     element: <AddListing />,
   },
 ]);
 
