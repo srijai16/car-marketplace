@@ -7,66 +7,56 @@ import { IoMdOpen } from "react-icons/io";
 
 export default function CarItem({ car }) {
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer relative">
+    <div className="flex flex-col h-full relative">
 
-      {/* Badge */}
       <span className="absolute top-3 left-3 bg-black text-white text-xs px-3 py-1 rounded-full z-10">
         New
       </span>
 
-      {/* Image */}
-      <div className="overflow-hidden">
+      <div className="overflow-hidden bg-gray-200">
         <img
-          src={car?.image}
-          alt={car?.name}
-          className="w-full h-48 sm:h-56 md:h-60 object-cover hover:scale-105 transition-all duration-300"
+          src={car?.images?.[0]?.imageUrl || "https://via.placeholder.com/400x300"}
+          alt={car?.listingTitle}
+          className="w-full h-60 object-cover hover:scale-105 transition-all duration-300"
         />
       </div>
 
-      {/* Content */}
-      <div className="p-4 sm:p-5 space-y-3">
+      <div className="p-5 flex flex-col flex-grow">
 
-        {/* Title */}
-        <h2 className="font-semibold text-lg sm:text-xl text-gray-800">
-          {car?.name}
+        <h2 className="font-semibold text-lg text-gray-800 mb-3">
+          {car?.listingTitle}
         </h2>
 
         <Separator />
 
-        {/* Specs */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 text-center text-xs sm:text-sm text-gray-600 gap-4">
-
+        <div className="grid grid-cols-3 text-center text-sm text-gray-600 gap-4 my-3">
           <div className="flex flex-col items-center">
-            <BsFuelPumpFill className="text-base sm:text-lg mb-1 text-blue-600" />
-            <span>{car?.miles} Miles</span>
+            <BsFuelPumpFill className="text-lg mb-1 text-blue-600" />
+            <span>{car?.mileage} Miles</span>
           </div>
 
           <div className="flex flex-col items-center">
-            <SlSpeedometer className="text-base sm:text-lg mb-1 text-blue-600" />
-            <span>{car?.fuel}</span>
+            <SlSpeedometer className="text-lg mb-1 text-blue-600" />
+            <span>{car?.fuelType}</span>
           </div>
 
-          <div className="flex flex-col items-center col-span-2 sm:col-span-1">
-            <GiGearStickPattern className="text-base sm:text-lg mb-1 text-blue-600" />
-            <span>{car?.gearType}</span>
+          <div className="flex flex-col items-center">
+            <GiGearStickPattern className="text-lg mb-1 text-blue-600" />
+            <span>{car?.transmission}</span>
           </div>
-
         </div>
 
         <Separator />
 
-        {/* Price & View */}
-        <div className="flex items-center justify-between">
-
-          <h2 className="font-bold text-xl sm:text-2xl text-gray-900">
-            ${car?.price}
+        <div className="flex items-center justify-between mt-auto pt-3">
+          <h2 className="font-bold text-xl text-gray-900">
+            ${car?.sellingPrice}
           </h2>
 
-          <div className="flex items-center gap-1 sm:gap-2 text-blue-600 font-medium text-xs sm:text-sm hover:underline">
+          <div className="flex items-center gap-2 text-blue-600 font-medium text-sm hover:underline">
             <IoMdOpen />
             View
           </div>
-
         </div>
 
       </div>

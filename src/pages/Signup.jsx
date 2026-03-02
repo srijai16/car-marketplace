@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { 
+  createUserWithEmailAndPassword, 
+  updateProfile 
+} from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/ui/card";
@@ -8,6 +11,7 @@ import { Input } from "@/components/input";
 import { Button } from "@/components/ui/ui/button";
 
 export default function Signup() {
+  const [name, setName] = useState("");   // ✅ NEW
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,10 +23,18 @@ export default function Signup() {
     setLoading(true);
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-      // ✅ Redirect to Home after signup
-      alert("Account created Sucessfully");
+      // ✅ Set display name
+      await updateProfile(userCredential.user, {
+        displayName: name,
+      });
+
+      alert("Account created Successfully");
       navigate("/login");
 
     } catch (error) {
@@ -43,6 +55,15 @@ export default function Signup() {
 
         <CardContent className="space-y-5">
           <form onSubmit={handleEmailSignup} className="space-y-4">
+
+            {/* ✅ Name Field */}
+            <Input
+              type="text"
+              placeholder="Full Name"
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+
             <Input
               type="email"
               placeholder="Email"
@@ -68,10 +89,7 @@ export default function Signup() {
 
           <div className="text-center text-sm">
             Already have an account?{" "}
-            <Link
-              to="/login"
-              className="text-blue-600 hover:underline"
-            >
+            <Link to="/login" className="text-blue-600 hover:underline">
               Login
             </Link>
           </div>
