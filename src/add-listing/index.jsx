@@ -8,9 +8,25 @@ import { Separator } from '@/components/ui/separator'
 import features from './../Shared/features.json'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from '@/components/ui/button'
+import { CarListing } from './../../configs/schema'
+import { db } from './../../configs'
+import IconField from './components/IconField'
+import UploadImages from './components/UploadImages'
+import { useNavigate, useNavigation } from 'react-router-dom'
+
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import moment from 'moment/moment'
+
+
 
 export default function AddListing() {
+    const { user } = useContext(AuthContext);
     const [formData,setFormData]=useState([]);
+    const[featuresData,setFeaturesData]=useState([]);
+    const[triggerUploadImages,setTriggerUploadImages]=useState();
+    const [uploading, setUploading] = useState(false);
+    const navigate=useNavigate();
     const handleInputChange=(name,value)=>{
         setFormData((prevData)=>({
             ...prevData,
@@ -18,9 +34,32 @@ export default function AddListing() {
         }))
         console.log(formData);
     }
-    const onSubmit=(e)=>{
+    const handleFeatureChange=(name,value)=>{
+        setFeaturesData((prevData)=>({
+            ...prevData,
+            [name]:value
+        }))
+    }
+    const onSubmit=async(e)=>{
+        setUploading(true);
         e.preventDefault();
         console.log(formData);
+    try{
+        
+        const result=await db.insert(CarListing).values({...formData,
+            features:featuresData,
+            createdBy:user?.email,
+            postedOn:moment().format('DD/MM/YYYY')
+
+        }).returning({id:CarListing.id});
+        if(result){
+            console.log("Data saved")
+            setTriggerUploadImages(result[0]?.id);
+        setUploading(false);
+        }
+    }catch(e){
+        console.log("error",e)
+    }
     }
   return (
     <div>
@@ -34,8 +73,8 @@ export default function AddListing() {
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                         {carDetails.carDetails.map((item,index)=>(
                          <div key={index}>
-                            <label className='text-sm'>
-                                
+                            <label className='text-sm flex gap-2 items-center mb-2'>
+                                <IconField icon={item?.icon}/>
                                 {item?.label} 
                                 {item.required && <span className='text-red-500'>*</span>}
                             </label>
@@ -51,16 +90,19 @@ export default function AddListing() {
                     <div className='grid grid-cols-2 md:grid-cols-3 gap-2'>
                         {features.features.map((item,index)=>(
                         <div key={index} className='flex gap-2 items-center'>
-                            <Checkbox onCheckedChange={(value)=>handleInputChange(item.name,value)}/><h2>{item.label}</h2>
+                            <Checkbox onCheckedChange={(value)=>handleFeatureChange(item.name,value)}/><h2>{item.label}</h2>
                         </div>
                     ))}
                     </div>
 
                 </div>
                 {/* images*/}
-   
+                <Separator className='my-6'/>
+                <UploadImages triggerUploadImages={triggerUploadImages} setUploading={(v)=>{setUploading(v);navigate('/profile')}}/>
                 <div className='mt-10 flex justify-end'>
-                    <Button onClick={(e)=>onSubmit(e)}>Submit</Button>
+                    <Button onClick={(e)=>onSubmit(e)} disabled={uploading}>
+                        {uploading ? "Uploading..." : "Upload"}
+                    </Button>
                 </div>
             </form>
         </div>

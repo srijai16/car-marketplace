@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 // import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAbrzDPFQIbY_bF_FpriWVb_JZvkTatQtg",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "car-marketplace-5b808.firebaseapp.com",
   projectId: "car-marketplace-5b808",
   storageBucket: "car-marketplace-5b808.firebasestorage.app",
