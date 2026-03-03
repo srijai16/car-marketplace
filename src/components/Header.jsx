@@ -22,12 +22,12 @@ export default function Header() {
         <div className='flex items-center gap-5'>
             <UserButton />
             <Link to={'/profile'}>
-                <Button>Submit Listing</Button>
+                <Button className='bg-blue-600'>Submit Listing</Button>
             </Link>
             
         </div> 
         :
-        <Button>Submit Listing</Button>
+        <Button className='bg-blue-600'>Submit Listing</Button>
 
         }
     </div>

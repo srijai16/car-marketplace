@@ -4,9 +4,11 @@ import { BsFuelPumpFill } from "react-icons/bs";
 import { SlSpeedometer } from "react-icons/sl";
 import { GiGearStickPattern } from "react-icons/gi";
 import { IoMdOpen } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export default function CarItem({ car }) {
   return (
+     
     <div className="flex flex-col h-full relative">
 
       <span className="absolute top-3 left-3 bg-black text-white text-xs px-3 py-1 rounded-full z-10">
@@ -53,10 +55,12 @@ export default function CarItem({ car }) {
             ${car?.sellingPrice}
           </h2>
 
+          <Link to={'/listing-details/'+car?.id}>
           <div className="flex items-center gap-2 text-blue-600 font-medium text-sm hover:underline">
             <IoMdOpen />
             View
           </div>
+          </Link>
         </div>
 
       </div>
