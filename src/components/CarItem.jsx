@@ -17,7 +17,7 @@ export default function CarItem({ car }) {
         <img
           src={car?.images?.[0]?.imageUrl || "https://via.placeholder.com/400x300"}
           alt={car?.listingTitle}
-          className="w-full h-60 object-cover hover:scale-105 transition-all duration-300"
+          className="w-full h-60 object-cover hover:scale-105 transition-all duration-300 rounded-2xl"
         />
       </div>
 
