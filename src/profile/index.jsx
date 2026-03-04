@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import MyListing from './components/MyListing'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Inbox from './components/inbox'
+import Inbox from './components/Inbox'
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ProfileUpdate from './components/Profile'
