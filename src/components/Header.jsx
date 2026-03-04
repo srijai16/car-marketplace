@@ -11,13 +11,44 @@ export default function Header() {
   return (
     <div className='flex justify-between items-center shadow-sm h-16 px-6 '>
         <img src='/logo.svg' width={200} height={200} style={{ cursor: "pointer" }}
-      onClick={() => navigate("/")}/>
-        <ul className='hidden md:flex gap-12'>
-            <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>Home</li>
-            <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>Search</li>
-            <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>New</li>
-            <li className='font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary'>Preowned</li>
-        </ul>
+            onClick={() => navigate("/")}/>
+              <ul className="hidden md:flex gap-12">
+        <li>
+          <Link
+            to="/"
+            className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary"
+          >
+            Home
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/search"
+            className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary"
+          >
+            Search
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/search?cars=New"
+            className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary"
+          >
+            New
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/search?cars=Certified+Pre-Owned"
+            className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary"
+          >
+            Preowned
+          </Link>
+        </li>
+      </ul>
         {user?
         <div className='flex items-center gap-5'>
             <UserButton />

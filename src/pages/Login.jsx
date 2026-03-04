@@ -9,12 +9,12 @@ import {
   RecaptchaVerifier,
   signInWithPhoneNumber,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/ui/card";
-import { Input } from "../components/input";
-import { Button } from "../components/ui/ui/button";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Login() {
   const [loginMode, setLoginMode] = useState("email");
@@ -23,14 +23,19 @@ export default function Login() {
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
   const [confirmationResult, setConfirmationResult] = useState(null);
+
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // 🔥 Redirect back after login
+  const from = location.state?.from?.pathname || "/";
+
   // 🔹 Email Login
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Login Successful");
-      navigate("/")
+      navigate(from, { replace: true });
     } catch (error) {
       alert(error.message);
     }
@@ -58,59 +63,56 @@ export default function Login() {
   const handleVerifyOTP = async () => {
     try {
       await confirmationResult.confirm(otp);
-      alert("Mobile Login Successful");
-      navigate("/")
+      navigate(from, { replace: true });
     } catch (error) {
       alert(error.message);
     }
   };
 
-  // 🔹 OAuth
+  // 🔹 Google Login
   const handleGoogleLogin = async () => {
-    try{
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-     navigate("/");
-
-  } catch (error) {
-    alert(error.message);
-  }
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      navigate(from, { replace: true });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
+  // 🔹 GitHub Login
   const handleGithubLogin = async () => {
-    try{
-    const provider = new GithubAuthProvider();
-    await signInWithPopup(auth, provider);
-     navigate("/");
-
-  } catch (error) {
-    alert(error.message);
-  }
+    try {
+      const provider = new GithubAuthProvider();
+      await signInWithPopup(auth, provider);
+      navigate(from, { replace: true });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
+  // 🔹 Apple Login
   const handleAppleLogin = async () => {
-    try{
-    const provider = new OAuthProvider("apple.com");
-    await signInWithPopup(auth, provider);
-     navigate("/");
-
-  } catch (error) {
-    alert(error.message);
-  }
+    try {
+      const provider = new OAuthProvider("apple.com");
+      await signInWithPopup(auth, provider);
+      navigate(from, { replace: true });
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+    <div className="flex justify-center items-center min-h-screen bg-muted/40">
       <Card className="w-[420px] shadow-xl">
         <CardHeader>
           <CardTitle className="text-center text-2xl">
-            Login to Car MarketPlace
+            Login to Car Marketplace
           </CardTitle>
         </CardHeader>
 
         <CardContent className="space-y-5">
-
-          {/* 🔥 Email Login (Default) */}
+          {/* EMAIL LOGIN */}
           {loginMode === "email" && (
             <>
               <form onSubmit={handleEmailLogin} className="space-y-3">
@@ -142,7 +144,7 @@ export default function Login() {
             </>
           )}
 
-          {/* 🔥 Mobile Login */}
+          {/* PHONE LOGIN */}
           {loginMode === "phone" && (
             <>
               <div className="space-y-3">
@@ -178,63 +180,37 @@ export default function Login() {
             </>
           )}
 
-          {/* OR Divider */}
-          <div className="text-center text-sm text-gray-400">
+          {/* Divider */}
+          <div className="text-center text-sm text-muted-foreground">
             OR continue with
           </div>
 
-          {/* 🔥 OAuth Buttons */}
+          {/* OAuth */}
           <div className="grid grid-cols-2 gap-3">
-
-            <Button
-              variant="outline"
-              className="flex items-center gap-2"
-              onClick={handleGoogleLogin}
-            >
-              <img
-                src="https://www.svgrepo.com/show/475656/google-color.svg"
-                className="w-5 h-5"
-              />
+            <Button variant="outline" onClick={handleGoogleLogin}>
               Google
             </Button>
 
-            <Button
-              variant="outline"
-              className="flex items-center gap-2"
-              onClick={handleGithubLogin}
-            >
-              <img
-                src="https://www.svgrepo.com/show/512317/github-142.svg"
-                className="w-5 h-5"
-              />
+            <Button variant="outline" onClick={handleGithubLogin}>
               GitHub
             </Button>
 
             <Button
               variant="outline"
-              className="flex items-center gap-2 col-span-2"
+              className="col-span-2"
               onClick={handleAppleLogin}
             >
-              <img
-                src="https://www.svgrepo.com/show/452210/apple.svg"
-                className="w-5 h-5"
-              />
               Apple
             </Button>
-
           </div>
 
-          {/* 🔥 Signup Link */}
+          {/* Signup */}
           <div className="text-center text-sm pt-4">
             Don’t have an account?{" "}
-            <Link
-              to="/signup"
-              className="text-blue-600 hover:underline"
-            >
+            <Link to="/signup" className="text-blue-600 hover:underline">
               Sign up
             </Link>
           </div>
-
         </CardContent>
       </Card>
     </div>

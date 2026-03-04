@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase"; // make sure path is correct
 
 export const AuthContext = createContext();
 
@@ -18,8 +18,8 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>
-      {!loading && children}
+    <AuthContext.Provider value={{ user, loading }}>
+      {children}
     </AuthContext.Provider>
   );
 };

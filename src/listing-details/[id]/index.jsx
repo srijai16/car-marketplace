@@ -222,7 +222,7 @@ console.log(ownerUserId);
                   ${carDetail.sellingPrice}
                 </h2>
                 <Button className="w-full bg-blue-600 text-sm sm:text-base" onClick={onMessageOwnerButtonClick}>
-                  Make An Offer Price
+                  Chat & Make an Offer
                 </Button>
               </CardContent>
             </Card>

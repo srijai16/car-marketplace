@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { eq } from 'drizzle-orm';
 import Service from '@/Shared/Service';
 import CarItem from '@/components/CarItem';
+import Footer from '@/components/Footer';
 export default function SearchByCategory() {
     const{category}=useParams();
     useEffect(()=>{
@@ -67,8 +68,7 @@ export default function SearchByCategory() {
 
             </div>
         </div>
-
-
+        <Footer/>
     </div>
   )
 }

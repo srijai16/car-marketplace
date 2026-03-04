@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Inbox from './components/inbox'
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ProfileUpdate from './components/Profile'
+import Footer from '@/components/Footer'
 export default function Profile() {
       const [searchParams] = useSearchParams();
     const tabFromUrl = searchParams.get("tab") || "my-listing";
@@ -36,11 +38,12 @@ export default function Profile() {
   </TabsContent>
 
   <TabsContent value="profile">
-    Change your password here.
+    <ProfileUpdate/>
   </TabsContent>
 </Tabs>
             
         </div>
+        <Footer/>
     </div>
   )
 }

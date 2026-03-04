@@ -18,6 +18,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import moment from 'moment/moment'
 import Service from '@/Shared/Service'
+import Footer from '@/components/Footer'
 
 
 
@@ -168,7 +169,7 @@ export default function AddListing() {
                 </div>
             </form>
         </div>
-
+        <Footer/>
     </div>
   )
 }

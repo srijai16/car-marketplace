@@ -8,6 +8,7 @@ import Search from '@/components/Search'
 import CarItem from '@/components/CarItem';
 import { useParams } from 'react-router-dom';
 import { and, eq, lte } from "drizzle-orm";
+import Footer from '@/components/Footer';
 function SearchByOptions() {
     const [searchParm]=useSearchParams();
     const cars=searchParm.get('cars');
@@ -90,8 +91,7 @@ function SearchByOptions() {
     
                 </div>
             </div>
-    
-    
+            <Footer/>
         </div>
   )
 }

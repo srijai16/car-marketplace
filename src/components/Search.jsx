@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator"
 import { IoSearchOutline } from "react-icons/io5";
 import Data from '@/Shared/Data';
 import { useNavigate } from "react-router-dom";
+import Footer from './Footer';
 
     export default function Search() {
       const navigate = useNavigate();
@@ -78,6 +79,7 @@ import { useNavigate } from "react-router-dom";
       >
         <IoSearchOutline size={22} color="white" />
       </div>
+      
     </div>
   );
 }
