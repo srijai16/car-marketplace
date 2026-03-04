@@ -57,8 +57,9 @@ export default function Header() {
             </Link>
             
         </div> 
-        :
+        :<Link to={'/profile'}>
         <Button className='bg-blue-600'>Submit Listing</Button>
+        </Link>
 
         }
     </div>
