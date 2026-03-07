@@ -39,9 +39,9 @@ export default function Search() {
 
       {/* Cars */}
       <Select onValueChange={(value) => setCars(value)}>
-        <SelectTrigger className="outline-none border-none w-full shadow-none text-sm md:text-lg truncate">
+        <SelectTrigger className="outline-none border-none w-full shadow-none text-sm md:text-lg">
           
-          <SelectValue placeholder="Cars" />
+          <SelectValue placeholder="Cars" className="truncate" />
         </SelectTrigger>
 
         <SelectContent>
@@ -79,8 +79,8 @@ export default function Search() {
 
       {/* Pricing */}
       <Select onValueChange={(value) => setPrice(value)}>
-        <SelectTrigger className="outline-none border-none w-full shadow-none text-sm md:text-lg truncate">
-          <SelectValue placeholder="Pricing" />
+        <SelectTrigger className="outline-none border-none w-full shadow-none text-sm md:text-lg">
+          <SelectValue placeholder="Pricing" className="truncate" />
         </SelectTrigger>
 
         <SelectContent>
