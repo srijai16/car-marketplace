@@ -3,7 +3,7 @@ import React from "react";
 function InfoSection() {
   return (
     <section className="bg-gray-50">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-8 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 items-center">
 
           {/* Image */}

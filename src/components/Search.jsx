@@ -59,9 +59,12 @@ export default function Search() {
 
       {/* Car Makes */}
       <Select onValueChange={(value) => setMake(value)}>
-        <SelectTrigger className="outline-none border-none w-full shadow-none text-sm md:text-lg truncate">
-          <SelectValue placeholder="Car Makes" />
-        </SelectTrigger>
+        <SelectTrigger className="outline-none border-none w-full shadow-none text-sm md:text-lg">
+        <SelectValue 
+          placeholder="Car Makes"
+          className="truncate"
+        />
+      </SelectTrigger>
 
         <SelectContent>
           {Data.CarMakes.map((maker, index) => (
