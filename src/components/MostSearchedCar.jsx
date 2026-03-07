@@ -13,6 +13,7 @@ import { db } from '../../configs'
 import { eq } from 'drizzle-orm'
 import { desc } from 'drizzle-orm'
 import Service from '@/Shared/Service'
+import Autoplay from "embla-carousel-autoplay"
 function MostSearchedCar() {
   const [carList,setCarList]=useState([]);
   useEffect(()=>{
@@ -31,7 +32,17 @@ function MostSearchedCar() {
       return (
     <div className='mx-24'>
         <h2 className='font-bold text-3xl text-center mt-16 mb-7'>Most Searched Cars</h2>
-        <Carousel>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 3000,
+            }),
+          ]}
+        >
         <CarouselContent>
              {carList.map((car, index) => (
                  <CarouselItem
