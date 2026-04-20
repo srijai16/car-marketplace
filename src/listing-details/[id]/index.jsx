@@ -73,7 +73,7 @@ function ListingDetail() {
 
   const handleCallAgent = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/call", {
+    const response = await fetch("https://car-marketplace-3wi8.onrender.com/api/call", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
