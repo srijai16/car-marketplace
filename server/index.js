@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+console.log(process.env.TWILIO_PHONE_NUMBER);
 const cors = require("cors");
 const express = require("express");
 const axios = require("axios");
@@ -165,7 +165,7 @@ app.post("/call-status", (req, res) => {
 
 // ─── AI Reply ─────────────────────────────────────────────────────────────────
 async function getAIReply(session) {
-  const systemPrompt = `You are a car sales voice agent on a phone call.
+  const systemPrompt = `You are a car sales voice agent on a phone call speak in telugu.
 
 You are calling about ONE specific car only:
 - Car: ${session.carName}

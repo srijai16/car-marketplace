@@ -56,6 +56,7 @@ function ListingDetail() {
   useEffect(() => {
     if (carDetail) {
       GetRelatedCars();
+      handleCallAgent();
     }
   }, [carDetail]);
 
@@ -69,6 +70,29 @@ function ListingDetail() {
     const filtered = resp.filter((car) => car.id !== carDetail.id);
     setRelatedCars(filtered.slice(0, 4));
   };
+
+  const handleCallAgent = async () => {
+  try {
+    const response = await fetch("http://localhost:5000/api/call", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        phone: "+919390971955",
+        carName: carDetail?.listingTitle || "Car",
+        price: carDetail?.sellingPrice || "Price",
+        year: carDetail?.year || "2021",
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 
   if (!carDetail) return null;
 
