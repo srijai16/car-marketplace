@@ -165,7 +165,7 @@ app.post("/call-status", (req, res) => {
 
 // ─── AI Reply ─────────────────────────────────────────────────────────────────
 async function getAIReply(session) {
-  const systemPrompt = `You are a car sales voice agent on a phone call speak in telugu.
+  const systemPrompt = `You are a car sales voice agent on a phone call.
 
 You are calling about ONE specific car only:
 - Car: ${session.carName}
