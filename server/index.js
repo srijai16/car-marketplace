@@ -26,12 +26,25 @@ function sanitizeXML(str = "") {
 }
 
 // ─── Trigger Call ────────────────────────────────────────────────────────────
-app.post("/api/call", async (req, res) => {
-  const { phone, carName, price, year } = req.body;
-  console.log("📞 /api/call received:", { phone, carName, price, year });
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ success: true, message: "Server Ready" });
+});
 
-  if (!phone || !carName) {
-    return res.status(400).json({ error: "Missing phone or carName" });
+app.post("/api/call", async (req, res) => {
+  const { name, phone, carName, price, year } = req.body;
+
+  console.log("📞 /api/call received:", {
+    name,
+    phone,
+    carName,
+    price,
+    year,
+  });
+
+  if (!phone || !carName || !name) {
+    return res.status(400).json({
+      error: "Missing name, phone or carName",
+    });
   }
 
   try {
@@ -44,18 +57,20 @@ app.post("/api/call", async (req, res) => {
     });
 
     callSessions[call.sid] = {
+      name,
+      phone,
       carName,
       price,
       year,
       history: [],
     };
 
-    console.log("✅ Call created | SID:", call.sid);
-    console.log("📦 Session stored:", callSessions[call.sid]);
-
-    res.json({ success: true, callSid: call.sid });
+    res.json({
+      success: true,
+      callSid: call.sid,
+    });
   } catch (err) {
-    console.error("❌ Call creation failed:", err.message);
+    console.error(err.message);
     res.status(500).json({ error: err.message });
   }
 });
@@ -73,7 +88,7 @@ app.post("/voice", (req, res) => {
   const year    = sanitizeXML(session?.year    ?? "");
   const price   = sanitizeXML(session?.price   ?? "");
 
-  const msg = `Hi! You recently viewed the ${carName}${year ? `, ${year} model` : ""}${price ? `, priced at ${price}` : ""}. Are you still interested?`;
+  const msg = `Hi ${session?.name || ""}, you recently viewed the ${carName}${year ? `, ${year} model` : ""}${price ? `, priced at ${price}` : ""}. Are you still interested?`;
 
   res.type("text/xml");
   res.send(`
