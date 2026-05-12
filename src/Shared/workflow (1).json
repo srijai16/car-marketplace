@@ -1,0 +1,106 @@
+{
+  "nodes": [
+    {
+      "id": "n_1",
+      "type": "start",
+      "position": {
+        "x": 113.33333333333331,
+        "y": -33.33333333333334
+      },
+      "data": {
+        "label": "Start",
+        "metadata": []
+      },
+      "width": 120,
+      "height": 57,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 113.33333333333331,
+        "y": -33.33333333333334
+      },
+      "dragging": false
+    },
+    {
+      "id": "n_2",
+      "type": "task",
+      "position": {
+        "x": 267.3333333333333,
+        "y": 67.05555470784505
+      },
+      "data": {
+        "label": "New Task",
+        "description": "",
+        "assignee": "",
+        "dueDate": "",
+        "customFields": []
+      },
+      "width": 120,
+      "height": 74
+    },
+    {
+      "id": "n_4",
+      "type": "automated",
+      "position": {
+        "x": 400,
+        "y": 6.388888041178386
+      },
+      "data": {
+        "label": "Automated Step",
+        "actionId": "",
+        "params": {}
+      },
+      "width": 120,
+      "height": 74
+    },
+    {
+      "id": "n_6",
+      "type": "end",
+      "position": {
+        "x": 268.6666666666667,
+        "y": 175.72222137451172
+      },
+      "data": {
+        "label": "End",
+        "endMessage": "Workflow complete",
+        "summary": false
+      },
+      "width": 120,
+      "height": 74
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_1",
+      "sourceHandle": null,
+      "target": "n_2",
+      "targetHandle": null,
+      "animated": true,
+      "id": "reactflow__edge-n_1-n_2"
+    },
+    {
+      "source": "n_2",
+      "sourceHandle": null,
+      "target": "n_6",
+      "targetHandle": null,
+      "animated": true,
+      "id": "reactflow__edge-n_2-n_6"
+    },
+    {
+      "source": "n_4",
+      "sourceHandle": null,
+      "target": "n_6",
+      "targetHandle": null,
+      "animated": true,
+      "id": "reactflow__edge-n_4-n_6"
+    },
+    {
+      "source": "n_2",
+      "sourceHandle": null,
+      "target": "n_4",
+      "targetHandle": null,
+      "animated": true,
+      "id": "reactflow__edge-n_2-n_4"
+    }
+  ],
+  "exportedAt": "2026-04-24T12:39:29.755Z"
+}

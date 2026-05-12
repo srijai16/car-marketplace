@@ -1,0 +1,21 @@
+<svg width="280" height="80" viewBox="0 0 280 80" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Logo Icon -->
+  <g transform="translate(15,20) scale(1.2)">
+    <path d="M15 0L20.4545 5.33333L0 25.3333V14.6667L15 0Z" fill="#000000"></path>
+    <path d="M2.90827 28.177L15 40L30 25.3334V14.6667L20.4545 5.33337L0 25.3334L0.0041688 25.3375L20.4545 5.33337V20.6667L11.25 29.6667V20.1324L2.90827 28.177Z" fill="#2563eb"></path>
+  </g>
+
+  <!-- Text -->
+  <text 
+    x="55" 
+    y="57" 
+    font-family="Montserrat, Poppins, Arial, sans-serif" 
+    font-size="36" 
+    font-weight="700"
+    letter-spacing="0"
+  >
+    <tspan fill="#000000">Car</tspan><tspan fill="#2563eb">Space</tspan>
+  </text>
+
+</svg>

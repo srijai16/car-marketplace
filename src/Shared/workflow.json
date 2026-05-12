@@ -1,0 +1,113 @@
+{
+  "nodes": [
+    {
+      "id": "n_1",
+      "type": "start",
+      "position": {
+        "x": 189.99865712689422,
+        "y": -12.285190130485958
+      },
+      "data": {
+        "label": "PR_CREATED",
+        "metadata": [
+          {
+            "key": "Action",
+            "value": "A developer pushes code to a feature branch and opens a Pull Request (PR). This is the entry point that triggers the workflow."
+          }
+        ]
+      },
+      "width": 120,
+      "height": 57,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 189.99865712689422,
+        "y": -12.285190130485958
+      }
+    },
+    {
+      "id": "n_2",
+      "type": "task",
+      "position": {
+        "x": 384.21723902875124,
+        "y": 34.254107904290876
+      },
+      "data": {
+        "label": "PEER_REVIEW",
+        "description": "One or more SDEs are assigned to review the code. They check for logic errors, security vulnerabilities, and adherence to the team's coding standards.\n",
+        "assignee": "john@acme.com",
+        "dueDate": "2026-04-22",
+        "customFields": []
+      },
+      "width": 120,
+      "height": 74,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 384.21723902875124,
+        "y": 34.254107904290876
+      }
+    },
+    {
+      "id": "n_6",
+      "type": "automated",
+      "position": {
+        "x": 383.7311850560853,
+        "y": 135.68164592114073
+      },
+      "data": {
+        "label": "CI_CD_PIPELINE",
+        "actionId": "create_ticket",
+        "params": {}
+      },
+      "width": 120,
+      "height": 74,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": 383.7311850560853,
+        "y": 135.68164592114073
+      }
+    },
+    {
+      "id": "n_10",
+      "type": "end",
+      "position": {
+        "x": 190.09884752977516,
+        "y": 192.98945147938184
+      },
+      "data": {
+        "label": "DEPLOYMENT_COMPLETE",
+        "endMessage": "The code is live.",
+        "summary": false
+      },
+      "width": 162,
+      "height": 74,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 190.09884752977516,
+        "y": 192.98945147938184
+      },
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_1",
+      "sourceHandle": null,
+      "target": "n_2",
+      "targetHandle": null,
+      "animated": true,
+      "id": "reactflow__edge-n_1-n_2"
+    },
+    {
+      "source": "n_6",
+      "sourceHandle": null,
+      "target": "n_10",
+      "targetHandle": null,
+      "animated": true,
+      "id": "reactflow__edge-n_6-n_10"
+    }
+  ],
+  "exportedAt": "2026-04-24T13:13:20.311Z"
+}
